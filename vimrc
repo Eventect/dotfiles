@@ -58,7 +58,7 @@ colorscheme solarized
 set runtimepath^=~/.vim/bundle/ctrlp.vimA
 
 "
-" Adds patched  font support for powerline
+" Adds patched font support for powerline
 " Display the powerline also in single window
 " https://github.com/Lokaltog/vim-powerline
 " http://alexyoung.org/2012/01/13/using-powerline-with-mac-os/
