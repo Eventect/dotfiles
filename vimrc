@@ -1,4 +1,9 @@
 set encoding=utf-8
+
+" Backspace fix
+" http://vim.wikia.com/wiki/Backspace_and_delete_problems
+"
+set backspace=indent,eol,start
 "
 " Pathogen configuration
 " http://vim.wikia.com/wiki/256_colors_in_vim
@@ -48,7 +53,22 @@ set t_Co=256
 "
 syntax enable
 set background=dark
-colorscheme solarized
+"
+" Custom colors
+"
+if !exists("autocmd_colorscheme_loaded")
+  let autocmd_colorscheme_loaded = 1
+  autocmd ColorScheme * highlight Todo guibg=#002b37 ctermfg=Red     guifg=#E01B1B
+endif
+
+
+if has("autocmd")
+  if v:version > 701
+    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|XXX\|BUG\|HACK\)')
+  endif
+endif
+
+colorscheme railscasts
 
 
 "
@@ -56,6 +76,7 @@ colorscheme solarized
 " http://kien.github.com/ctrlp.vim/#installation
 "
 set runtimepath^=~/.vim/bundle/ctrlp.vimA
+let g:ctrlp_custom_ignore = 'doc/app/*.*\|tmp/\|app/assets/images/*.*\|vendor/assets/images/*.*\|bin/*.*\|bundler_stubs/*.*\|log/*.*\|public/upload/*'
 
 "
 " Adds patched font support for powerline
@@ -76,3 +97,60 @@ set laststatus=2
 " https://github.com/AndrewRadev/switch.vim
 "
 nnoremap - :Switch<cr>
+
+"
+" Change cursor shape in xterm when moving to
+" Insert mode
+" http://vim.wikia.com/wiki/Configuring_the_cursor
+"
+if &term =~ '^xterm'
+  " solid underscore
+  let &t_SI .= "\<Esc>[6 q"
+  " solid block
+  let &t_EI .= "\<Esc>[2 q"
+  " 1 or 0 -> blinking block
+  " 3 -> blinking underscore
+  " Recent versions of xterm (282 or above) also support
+  " 5 -> blinking vertical bar
+  " 6 -> solid vertical bar
+endif
+
+" 
+" Highlight search (pattern match) results
+" Use the spacebar to remove the highlights
+" http://vim.wikia.com/wiki/Highlight_all_search_pattern_matches
+"
+set hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+"
+" Maps :NERDTree to leader-n
+"
+"map <leader>n :NERDTree<Enter>
+
+" " Cmd-Shift-R for RSpec
+" nmap <silent> <C-R> :call RunRspecCurrentFileConque()<CR>
+" " Cmd-Shift-L for RSpec Current Line
+" nmap <silent> <C-L> :call RunRspecCurrentLineConque()<CR>
+" " ,Cmd-R for Last conque command
+" nmap <silent> ,<C-R> :call RunLastConqueCommand()<CR>
+
+" http://robots.thoughtbot.com/post/48933156625/5-useful-tips-for-a-better-commit-message
+" Better git commit messages
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+"
+" http://kien.github.io/ctrlp.vim/#installation
+"
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+"
+" https://github.com/thoughtbot/vim-rspec
+"
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+
+let g:rspec_command = "!time zeus rspec {spec}"
+
+nnoremap <silent><c-b> :CtrlPBuffer<CR>

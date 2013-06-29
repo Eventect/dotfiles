@@ -32,11 +32,12 @@ ZSH_THEME="steeef"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git paolo)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH=$PATH:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin
+PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# Customize to your needs...
+export PATH=$PATH:/$HOME/.rvm/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin
+export PATH="/usr/local/bin:$PATH"
