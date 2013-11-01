@@ -41,3 +41,6 @@ PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 # Customize to your needs...
 export PATH=$PATH:/$HOME/.rvm/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin
 export PATH="/usr/local/bin:$PATH"
+export PATH=/usr/local/share/npm/lib/node_modules/coffee-script/bin:$PATH
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
