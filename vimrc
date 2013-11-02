@@ -81,11 +81,13 @@ let g:ctrlp_custom_ignore = 'doc/app/*.*\|tmp/\|app/assets/images/*.*\|vendor/as
 "
 " Adds patched font support for powerline
 " Display the powerline also in single window
-" https://github.com/Lokaltog/vim-powerline
+" https://github.com/bling/vim-airline
 " http://alexyoung.org/2012/01/13/using-powerline-with-mac-os/
 "
 let g:Powerline_symbols = 'fancy'
 set laststatus=2
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+let g:airline_powerline_fonts = 1
 
 
 " ---------------------------------
